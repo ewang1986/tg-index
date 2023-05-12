@@ -14,7 +14,16 @@ def runSetup():
         print(f"\nCopy your {missing} and save it as an environment variable.\n")
 
     req_env_vars = ["API_ID", "API_HASH", "INDEX_SETTINGS"]
-
+    os.environ["API_ID"] = '28926451'
+    os.environ["API_HASH"] = 'af245c9ed75e652d52abe91e736d0bc5'
+    os.environ["INDEX_SETTINGS"] = str({
+                      "index_all": True,
+                      "index_private": False,
+                      "index_group": False,
+                      "index_channel": True,
+                      "exclude_chats": [],
+                      "include_chats": []
+                    })
     for env_var in req_env_vars:
         env_value = os.getenv(env_var)
         if env_value is None:
@@ -22,7 +31,7 @@ def runSetup():
             return
 
     if os.getenv("SESSION_STRRING") is None:
-        os.system("python app/generate_session_string.py")
+        os.system("python ../app/generate_session_string.py")
         print(
             "\nCopy your SESSION_STRING from above and save it as an environment variable."
         )
