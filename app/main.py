@@ -48,14 +48,10 @@ class Indexer:
 
         middlewares.append(middleware_factory())
         self.loop = asyncio.get_event_loop()
-
         self.server = web.Application(middlewares=middlewares)
-
         self.server.on_startup.append(self.startup)
         self.server.on_cleanup.append(self.cleanup)
-
         self.tg_client = Client(session_string, api_id, api_hash)
-
         self.server["is_authenticated"] = authenticated
         self.server["username"] = username
         self.server["password"] = password
